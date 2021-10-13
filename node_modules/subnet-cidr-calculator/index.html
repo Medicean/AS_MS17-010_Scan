@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="./lib/SubnetCIDRAdviser.js"></script>
+    <script type="text/javascript">
+    	var existingSubnetCIDR = ['10.0.32.0/19'];
+    	var probabal_subnets = SubnetCIDRAdviser.calculate('10.0.0.0' , '23', existingSubnetCIDR);
+    	var is_overlap = SubnetCIDRAdviser.isSubnetOverlap(existingSubnetCIDR, '10.0.32.0/20');
+		  console.log(is_overlap, 'subnetOverlap');
+      var ip_range = SubnetCIDRAdviser.getIpRangeForSubnet( '10.0.32.0/20' );
+      console.log('IP range for 10.0.32.0/20 is', ip_range);
+
+      var subnetdetails = SubnetCIDRAdviser.getSubnetDetails( '10.0.32.0/20' );
+      console.log('Details for 10.0.32.0/20 is', subnetdetails);
+
+
+      var parentVPC_CIDR = '10.0.0.0/16';
+      var cidrToValidate = '';
+      var getNextValidCIDR = SubnetCIDRAdviser.getNextValidCIDR( parentVPC_CIDR, existingSubnetCIDR, probabal_subnets, cidrToValidate );
+      console.log('getNextValidCIDR is', getNextValidCIDR);
+
+      
+		//////////////////////////////////////////// DISPLAY POSSIBLE SUBNETS TO UI ////////////////////////////////////////////
+		if(is_overlap)
+		document.writeln("Subnet you are trying to create overlaps with existing "+is_overlap+"<hr><code style='line-height: 23px;font-size: 14px;'>");
+
+		document.writeln("POSSIBLE SUBNETS<hr><code style='line-height: 23px;font-size: 14px;'>");
+		for (var j = 0; j < probabal_subnets.subnets.length; j++) {
+		   document.writeln(probabal_subnets.subnets[j].value + ' | IP range: ' + probabal_subnets.subnets[j].ipRange.start + ' to ' + probabal_subnets.subnets[j].ipRange.end + ' | Range:' + ( (probabal_subnets.subnets[j].range) ? probabal_subnets.subnets[j].range.from+' - '+probabal_subnets.subnets[j].range.to : 'false' )  + " | " + probabal_subnets.subnets[j].moverlap + '<br>');
+		}
+		document.writeln("</code>");
+		console.log(probabal_subnets);
+    </script>
+  </head>
+  <body>
+    <code>
+
+    </code>
+  </body>
+<html>

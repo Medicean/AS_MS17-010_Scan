@@ -1,0 +1,24 @@
+{
+  "name": "MS17-010_检测",
+  "name_en": "MS17-010_Scan",
+  "main": "index.js",
+  "icon": "search",
+  "version": "0.1",
+  "description": "MS17-010 SMB 漏洞检测",
+  "description_en": "MS17-010 SMB scan",
+  "author": {
+    "name": "user",
+    "email": "user@u0u.us"
+  },
+  "category": "内网工具",
+  "category_en": "Intranet",
+  "multiple": true,
+  "scripts": [
+    "php",
+    "php4",
+    "phpraw"
+  ],
+  "dependencies": {
+    "subnet-cidr-calculator": "^1.0.8"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "subnet-cidr-calculator",
+  "version": "1.0.8",
+  "description": "JavaScript class for calculating all possible subnets, subnet validity, ip range",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "subnet",
+    "ip",
+    "network",
+    "netmask",
+    "calculator",
+    "overlap",
+    "range"
+  ],
+  "author": "pratik tayade <pratiktayade@gmail.com>",
+  "dependencies": {
+    "underscore": "^1.8.3"
+  }
+}
